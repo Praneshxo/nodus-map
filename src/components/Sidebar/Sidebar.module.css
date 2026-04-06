@@ -1,0 +1,373 @@
+.sidebarWrapper {
+    width: 380px;
+    height: calc(100vh - var(--header-height) - 40px);
+    position: absolute;
+    top: calc(var(--header-height) + 20px);
+    left: 20px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarContent {
+    background: var(--bg-float);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--box-shadow-modal);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.searchContainer {
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.sidebarSearchIcon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-tertiary);
+    pointer-events: none;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 12px 16px 12px 40px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+    font-size: 14px;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.searchInput:focus {
+    border-color: var(--primary-brand);
+}
+
+.filtersContainer {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.desktopDropdownWrapper {
+    position: relative;
+    flex: 1;
+}
+
+.desktopDropdownBtn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+    font-size: 13px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.desktopDropdownBtn:hover {
+    border-color: var(--primary-brand);
+}
+
+.desktopDropdownList {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: var(--bg-float);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    z-index: 500;
+    max-height: 240px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    gap: 2px;
+}
+
+.desktopDropdownItem {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: var(--text-primary);
+    text-align: left;
+    border-radius: var(--radius-xs);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.desktopDropdownItem:hover {
+    background: var(--bg-secondary);
+}
+
+.desktopDropdownItemActive {
+    background: var(--bg-secondary);
+    color: var(--primary-brand);
+    font-weight: 600;
+}
+
+.listHeader {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.clearBtn {
+    background: none;
+    border: none;
+    color: var(--primary-brand);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.clearBtn:hover {
+    opacity: 1;
+}
+
+.companyListContainer {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+/* Custom scrollbar */
+.companyListContainer::-webkit-scrollbar {
+    width: 4px;
+}
+
+.companyListContainer::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.companyListContainer::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 4px;
+}
+
+/* Sidebar Footer removed per user request (Trending/History moved to Hamburger) */
+
+.noResults {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-tertiary);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Mobile filter bar — hidden on desktop */
+.mobileFilterBar {
+    display: none;
+}
+
+/* Mobile dropdowns — hidden on desktop */
+.mobileDropdown {
+    display: none;
+}
+
+/* Mobile clear filter button — hidden on desktop */
+.mobileClearBtn {
+    display: none;
+}
+
+/* Chevron rotation */
+.chevronOpen {
+    transform: rotate(180deg);
+    transition: transform 0.2s;
+}
+
+/* ── Mobile ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    /* Sidebar wrapper: fixed strip below the header */
+    .sidebarWrapper {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        z-index: 400;
+    }
+
+    /* Hide desktop panel */
+    .sidebarContent {
+        display: none;
+    }
+
+    /* Desktop filter container hidden */
+    .filtersContainer {
+        display: none;
+    }
+
+    /* Footer hidden on mobile */
+    .sidebarFooter {
+        display: none;
+    }
+
+    /* ── Mobile filter bar ── */
+    .mobileFilterBar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 12px;
+        background: var(--bg-float);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    /* ── Custom dropdown wrapper ── */
+    .mobileDropdown {
+        display: block;
+        position: relative;
+        flex: 1;
+    }
+
+    /* Trigger button */
+    .mobileDropdownBtn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4px;
+        padding: 7px 10px;
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
+        font-size: 13px;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: border-color 0.15s;
+        white-space: nowrap;
+        overflow: hidden;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+    }
+
+    .mobileDropdownBtn span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .mobileDropdownBtn:hover {
+        border-color: var(--primary-brand);
+    }
+
+    /* Backdrop overlay to handle outside clicks reliably on mobile */
+    .mobileDropdownBackdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 500;
+        background: transparent;
+    }
+
+    /* Dropdown list — position fixed to stay within viewport */
+    .mobileDropdownList {
+        position: fixed;
+        top: 108px;
+        /* 56px header + 52px filter strip */
+        left: 0;
+        right: 0;
+        background: var(--bg-primary);
+        /* Keep it solid on mobile so map bleeding avoids */
+        border-bottom: 1px solid var(--border-color);
+        z-index: 600;
+        max-height: 260px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .mobileDropdownItem {
+        padding: 11px 16px;
+        font-size: 14px;
+        color: var(--text-primary);
+        text-align: left;
+        cursor: pointer;
+        transition: background 0.12s;
+        border-bottom: 1px solid var(--border-color);
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+    }
+
+    .mobileDropdownItem:last-child {
+        border-bottom: none;
+    }
+
+    .mobileDropdownItem:hover {
+        background: var(--bg-secondary);
+    }
+
+    .mobileDropdownItemActive {
+        color: var(--primary-brand);
+        font-weight: 600;
+        background: var(--bg-secondary);
+    }
+
+    /* ── Clear text button ── */
+    .mobileClearBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        padding: 7px 10px;
+        height: auto;
+        border-radius: var(--radius-sm);
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        color: var(--text-tertiary);
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s;
+        white-space: nowrap;
+    }
+
+    .mobileClearBtnActive {
+        background: var(--primary-brand) !important;
+        border-color: var(--primary-brand) !important;
+        color: white !important;
+    }
+
+    .mobileClearBtn:hover {
+        background: var(--bg-secondary);
+        border-color: var(--primary-brand);
+        color: var(--primary-brand);
+    }
+}

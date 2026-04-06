@@ -1,0 +1,107 @@
+.map-container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: var(--bg-primary);
+    overflow: hidden;
+}
+
+/* Override MapLibre tile text colors for dark theme visibility */
+[data-theme="dark"] .maplibregl-map canvas {
+    /* No direct CSS override for tile text; handled via style injection below */
+}
+
+/* Ensure map controls never overlap our custom UI overlays like sidebar dropdowns */
+.maplibregl-ctrl-top-right,
+.maplibregl-ctrl-bottom-right,
+.maplibregl-ctrl-top-left,
+.maplibregl-ctrl-bottom-left {
+    z-index: 0 !important;
+}
+
+.maplibregl-ctrl-group {
+    border-radius: 8px !important;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid var(--border-color) !important;
+    background: var(--bg-primary) !important;
+}
+
+.maplibregl-ctrl-group button {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    width: 36px !important;
+    height: 36px !important;
+}
+
+.maplibregl-ctrl-group button+button {
+    border-top: 1px solid var(--border-color) !important;
+}
+
+.maplibregl-ctrl-group button:hover {
+    background-color: var(--bg-secondary) !important;
+}
+
+/* Invert +/- icons in dark mode for visibility */
+[data-theme="dark"] .maplibregl-ctrl-group button .maplibregl-ctrl-icon {
+    filter: invert(1);
+}
+
+/* Markers styling */
+.company-pin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.15s ease-out;
+    pointer-events: none;
+    /* Ignore clicks/hovers on the wrapper and label */
+}
+
+.company-pin:active {
+    transform: scale(0.95);
+}
+
+/* Icon / image styling */
+.pin-logo {
+    border-radius: 50%;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    background-color: white;
+    border: 2px solid white;
+    object-fit: cover;
+    transition: all 0.2s ease;
+    pointer-events: auto;
+    /* Logo is interactive */
+    cursor: pointer;
+}
+
+.company-pin.selected .pin-logo {
+    border: 2px solid #3b82f6;
+    /* highlight color */
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* Tooltip hovering tag */
+.marker-label {
+    margin-top: 4px;
+    background: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #1e293b;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.company-pin:hover .marker-label,
+.company-pin.selected .marker-label {
+    opacity: 1;
+    transform: translateY(0);
+}

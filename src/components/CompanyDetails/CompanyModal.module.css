@@ -1,0 +1,179 @@
+.modalCard {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    width: 400px;
+    background: var(--bg-float);
+    backdrop-filter: blur(16px);
+    border-radius: var(--radius-xl);
+    padding: 32px;
+    box-shadow: var(--box-shadow-modal);
+    border: 1px solid var(--border-color);
+    z-index: 200;
+}
+
+.closeButton {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: var(--text-tertiary);
+    transition: color 0.2s;
+    padding: 4px;
+}
+
+.closeButton:hover {
+    color: var(--text-primary);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.logoContainer {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.companyName {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.infoSection {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.infoRow {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.iconWrapper {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+}
+
+.infoText {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.infoLabel {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    letter-spacing: 0.5px;
+}
+
+.infoValue {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.primaryButton {
+    flex: 1;
+    padding: 14px;
+    background: var(--primary-brand);
+    color: white;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 15px;
+    transition: background-color 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    text-align: center;
+}
+
+.primaryButton:hover {
+    background: var(--primary-hover);
+}
+
+.primaryButton:active {
+    transform: scale(0.98);
+}
+
+.secondaryActions {
+    display: flex;
+    gap: 12px;
+}
+
+.secondaryButton {
+    flex: 1;
+    padding: 12px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.secondaryButton:hover {
+    background: var(--tag-bg);
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    .modalCard {
+        position: fixed;
+        bottom: 20px;
+        left: 12px;
+        right: 12px;
+        width: auto;
+        padding: 20px;
+        border-radius: var(--radius-lg);
+        z-index: 300;
+    }
+
+    .companyName {
+        font-size: 18px;
+    }
+
+    .description {
+        font-size: 13px;
+        margin-bottom: 16px;
+    }
+
+    .infoSection {
+        margin-bottom: 20px;
+    }
+}

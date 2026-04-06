@@ -1,0 +1,46 @@
+.loaderContainer {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(5, 5, 5, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    overflow: hidden;
+    font-family: 'Inter', monospace;
+}
+
+.graphWrapper {
+    width: 300px;
+    height: 300px;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+}
+
+.svgGraph {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.edgeLine {
+    stroke: rgba(255, 255, 255, 0.3);
+    stroke-width: 0.5;
+    fill: none;
+}
+
+.nodePoint {
+    fill: #fff;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+}
+
+.loadingText {
+    margin-top: 3rem;
+    color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+}

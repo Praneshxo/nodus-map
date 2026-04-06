@@ -1,0 +1,487 @@
+.header {
+    height: var(--header-height);
+    width: 100vw;
+    background: var(--bg-float);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    /* Ensure logo can break out if needed */
+}
+
+.logoImg {
+    height: 80px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logoImg:hover {
+    transform: scale(1.05);
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    /* Increased gap */
+}
+
+/* Hidden on desktop; shown only at ≤768px via media query */
+.mobileSearch {
+    display: none;
+}
+
+.searchWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 12px;
+    color: var(--text-tertiary);
+    pointer-events: none;
+}
+
+.searchInput {
+    width: 280px;
+    background: var(--bg-secondary);
+    border: 1px solid transparent;
+    padding: 10px 16px 10px 36px;
+    border-radius: var(--radius-sm);
+    outline: none;
+    font-size: 14px;
+    color: var(--text-primary);
+    transition: all 0.2s;
+}
+
+.searchInput:focus {
+    border-color: var(--border-color);
+    background: var(--bg-primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Moved from Footer */
+.liveInfo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-right: 16px;
+    border-right: 1px solid var(--border-color);
+}
+
+.time {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    letter-spacing: 0.5px;
+}
+
+.liveWrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--success-color);
+    box-shadow: 0 0 0 2px var(--success-bg);
+    animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.liveText {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--success-color);
+    letter-spacing: 0.5px;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .5;
+    }
+}
+
+.contactBtn {
+    background: var(--primary-brand);
+    color: white;
+    border-radius: var(--radius-sm);
+    padding: 10px 24px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.contactBtn:hover {
+    background: var(--primary-hover);
+}
+
+/* ── Mobile theme button & actions — hidden on desktop ── */
+.mobileThemeBtn,
+.mobileActions {
+    display: none;
+}
+
+/* ── Desktop/Shared Buttons ── */
+.hamburgerBtn,
+.desktopThemeBtn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.hamburgerBtn:hover,
+.desktopThemeBtn:hover {
+    background: var(--bg-primary);
+    border-color: var(--primary-brand);
+}
+
+.hamburgerBtn:hover {
+    color: white;
+}
+
+/* ── Unified Menu Dialogue ── */
+.menuOverlay {
+    position: fixed;
+    top: var(--header-height, 64px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    /* Invisible overlay to catch clicks */
+    z-index: 2000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 10px 40px;
+}
+
+.menuDialog {
+    width: 100%;
+    max-width: 280px;
+    background: var(--bg-float);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    animation: dropDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropDown {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.menuHeader {
+    display: none;
+    /* Hidden on desktop dropdown */
+}
+
+.menuTitle {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+}
+
+.closeMenuBtn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.closeMenuBtn:hover {
+    background: var(--primary-brand);
+    color: white;
+}
+
+.menuGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: left;
+    cursor: pointer;
+}
+
+.menuItem:hover {
+    transform: scale(1.02);
+    background: var(--bg-primary);
+    border-color: var(--primary-brand);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.menuIcon {
+    color: var(--primary-brand);
+}
+
+.menuIconPlaceholder {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: var(--primary-brand);
+    color: white;
+    font-weight: 800;
+    font-size: 16px;
+}
+
+.menuItemText {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.menuItemLabel {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.menuItemDesc {
+    font-size: 12px;
+    color: var(--text-tertiary);
+}
+
+.contactItem {
+    margin-top: 8px;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+}
+
+/* ── Mobile ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .header {
+        padding: 0 16px;
+        gap: 10px;
+        height: 56px;
+    }
+
+    /* Stretch logo + search as a single row */
+    .left {
+        flex-shrink: 0;
+    }
+
+    .logoFull {
+        display: none;
+    }
+
+    .logoMobile {
+        display: block;
+        font-size: 26px;
+        font-weight: 900;
+        color: var(--primary-brand);
+        line-height: 1;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    /* Hide entire right section (LIVE DATA, Contact, desktop toggle) on mobile */
+    .right {
+        display: none;
+    }
+
+    /* Mobile search rendered separately via .mobileSearch */
+    .mobileSearch {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .mobileSearchIcon {
+        position: absolute;
+        left: 10px;
+        color: var(--text-tertiary);
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .mobileSearchInput {
+        width: 100%;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
+        padding: 8px 32px 8px 34px;
+        font-size: 14px;
+        color: var(--text-primary);
+        outline: none;
+    }
+
+    /* Clear search ✕ button inside input */
+    .mobileClearSearch {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-tertiary);
+        cursor: pointer;
+        padding: 2px;
+    }
+
+    /* Search suggestions dropdown */
+    .suggestions {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        background: var(--bg-float);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border-color);
+        z-index: 500;
+        display: flex;
+        flex-direction: column;
+        max-height: 280px;
+        overflow-y: auto;
+    }
+
+    .suggestionItem {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 16px;
+        cursor: pointer;
+        transition: background 0.15s;
+        text-align: left;
+    }
+
+    .suggestionItem:hover {
+        background: var(--bg-secondary);
+    }
+
+    .suggestionLogo {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
+    .suggestionLogoPlaceholder {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        background: var(--primary-brand);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 14px;
+        flex-shrink: 0;
+        text-transform: uppercase;
+    }
+
+    .suggestionName {
+        flex: 1;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+
+    .suggestionCity {
+        font-size: 11px;
+        color: var(--text-tertiary);
+        flex-shrink: 0;
+    }
+
+    /* Show mobile theme toggle button */
+    .mobileThemeBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        border-radius: var(--radius-sm);
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        color: var(--text-primary);
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .mobileThemeBtn:hover {
+        background: var(--bg-primary);
+    }
+
+    .mobileActions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .hamburgerBtn {
+        width: 36px;
+        height: 36px;
+        border-radius: var(--radius-sm);
+    }
+}
