@@ -19,6 +19,7 @@ interface SidebarProps {
     selectedCity: string;
     onCityChange: (city: string) => void;
     onClearFilters: () => void;
+    isCollectionActive?: boolean;
 }
 
 export default function Sidebar({
@@ -33,6 +34,7 @@ export default function Sidebar({
     selectedCity,
     onCityChange,
     onClearFilters,
+    isCollectionActive,
 }: SidebarProps) {
     const sidebarRef = useRef<HTMLDivElement>(null);
     const stateRef = useRef<HTMLDivElement>(null);
@@ -42,7 +44,7 @@ export default function Sidebar({
     const [cityOpen, setCityOpen] = useState(false);
 
     const hasActiveFilters =
-        searchQuery !== "" || selectedState !== "All" || selectedCity !== "All";
+        searchQuery !== "" || selectedState !== "All" || selectedCity !== "All" || Boolean(isCollectionActive);
 
     const states = [
         "All",

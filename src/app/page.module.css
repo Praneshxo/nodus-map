@@ -17,3 +17,90 @@
   height: 100%;
   background-color: var(--bg-secondary);
 }
+
+.collectionsOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collectionsDialog {
+  background: #1e1e1e;
+  border-radius: 16px;
+  width: 320px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  color: #fff;
+}
+
+.collectionsDialogHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.collectionsDialogHeader h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.collectionsDialogHeader button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.collectionsDialogList {
+  padding: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.collectionBox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.collectionBox:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+.collectionIconPlaceholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.collectionBoxInfo h4 {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+}
+
+.collectionBoxInfo span {
+  font-size: 12px;
+  color: #888;
+}

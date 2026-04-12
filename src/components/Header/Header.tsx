@@ -2,28 +2,44 @@
 
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import { Moon, Sun, Search, X, Menu, TrendingUp, History as HistoryIcon } from "lucide-react";
+import { Moon, Sun, Search, X, User, TrendingUp, Bookmark } from "lucide-react";
 import styles from "./Header.module.css";
 import { useTheme } from "../../context/ThemeContext";
 import { Company } from "../../types/company";
+import { useRouter } from "next/navigation";
+import { supabase } from "../../utils/supabase";
+
+
 
 interface HeaderProps {
     searchQuery?: string;
     onSearchChange?: (query: string) => void;
     allCompanies?: Company[];
     onSelectCompany?: (id: string) => void;
+    onTrending?: () => void;
+    onOpenCollections?: () => void;
 }
+
+
 
 export default function Header({
     searchQuery = "",
     onSearchChange,
     allCompanies = [],
     onSelectCompany,
+    onTrending,
+    onOpenCollections,
 }: HeaderProps) {
+
+
     const { theme, toggleTheme } = useTheme();
+    const router = useRouter();
     const [mounted, setMounted] = useState(false);
     const [focused, setFocused] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+
+
     useEffect(() => {
         setMounted(true);
     }, []);
@@ -46,6 +62,14 @@ export default function Header({
         setFocused(false);
         inputRef.current?.blur();
     }
+
+    function handleTrending() {
+        onTrending?.();
+        setIsMenuOpen(false);
+    }
+
+
+
 
     return (
         <header className={styles.header}>
@@ -131,10 +155,11 @@ export default function Header({
                 <button
                     className={styles.hamburgerBtn}
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    title="Menu"
+                    title="Profile"
                 >
-                    {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    {isMenuOpen ? <X size={24} /> : <User size={24} />}
                 </button>
+
             </div>
 
 
@@ -158,10 +183,11 @@ export default function Header({
                 <button
                     className={styles.hamburgerBtn}
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    title="Menu"
+                    title="Profile"
                 >
-                    {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    {isMenuOpen ? <X size={24} /> : <User size={24} />}
                 </button>
+
             </div>
 
             {/* Unified Menu Overlay (Polished Dialogue) */}
@@ -175,20 +201,37 @@ export default function Header({
                             </button>
                         </div>
                         <div className={styles.menuGrid}>
-                            <button className={styles.menuItem} onClick={() => setIsMenuOpen(false)}>
+                            <button className={styles.menuItem} onClick={handleTrending}>
                                 <TrendingUp size={22} className={styles.menuIcon} />
                                 <div className={styles.menuItemText}>
                                     <span className={styles.menuItemLabel}>Trending</span>
                                     <span className={styles.menuItemDesc}>Popular startups this week</span>
                                 </div>
                             </button>
-                            <button className={styles.menuItem} onClick={() => setIsMenuOpen(false)}>
-                                <HistoryIcon size={22} className={styles.menuIcon} />
+                            <button
+                                className={styles.menuItem}
+                                onClick={() => {
+                                    setIsMenuOpen(false);
+                                    onOpenCollections?.();
+                                }}
+                            >
+                                <Bookmark size={22} className={styles.menuIcon} />
                                 <div className={styles.menuItemText}>
-                                    <span className={styles.menuItemLabel}>History</span>
-                                    <span className={styles.menuItemDesc}>Your recently viewed</span>
+                                    <span className={styles.menuItemLabel}>My Collections</span>
+                                    <span className={styles.menuItemDesc}>View your saved startups</span>
                                 </div>
                             </button>
+
+
+
+                            <Link href="/profile" className={styles.menuItem} onClick={() => setIsMenuOpen(false)}>
+                                <User size={22} className={styles.menuIcon} />
+                                <div className={styles.menuItemText}>
+                                    <span className={styles.menuItemLabel}>Profile</span>
+                                    <span className={styles.menuItemDesc}>View and edit your info</span>
+                                </div>
+                            </Link>
+
                             <Link href="/contact" className={`${styles.menuItem} ${styles.contactItem}`} onClick={() => setIsMenuOpen(false)}>
                                 <div className={styles.menuIconPlaceholder}>?</div>
                                 <div className={styles.menuItemText}>
