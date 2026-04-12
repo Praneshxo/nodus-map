@@ -33,17 +33,23 @@ export default function MapPage() {
 
     useEffect(() => {
         const checkAuth = async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (!session) {
-                router.push('/signup');
-            } else {
-                setIsAuthChecking(false);
+            try {
+                const { data: { session } } = await supabase.auth.getSession();
+                if (!session) {
+                    router.push('/signup');
+                } else {
+                    setIsAuthChecking(false);
+                }
+            } catch (error) {
+                console.error("Auth check failed:", error);
+                setIsAuthChecking(false); // Proceed even on error to avoid being stuck
             }
         };
         checkAuth();
     }, [router]);
 
     useEffect(() => {
+        if (isAuthChecking) return;
 
         const script = document.createElement("script");
         script.dataset.zone = '10824080';
@@ -55,7 +61,7 @@ export default function MapPage() {
                 document.body.removeChild(script);
             }
         };
-    }, []);
+    }, [isAuthChecking]);
 
     // Filtering logic
     const filteredCompanies = realCompanies.filter(company => {
